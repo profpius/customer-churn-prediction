@@ -1,4 +1,4 @@
-# 📊 Customer Churn Prediction Using Machine Learning
+📊 Customer Churn Prediction Using Machine Learning
 
 A machine learning project to predict customer churn using a dataset of 36,992 customer records. The goal was to identify customers who are likely to leave and uncover the key factors driving churn, so the business can take action before losing them.
 
