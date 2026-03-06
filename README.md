@@ -74,7 +74,7 @@ I found that customers with lower wallet points were more likely to churn. This 
 
 **2. Focus on No Membership and Basic Membership Customers**
 
-My analysis showed that customers with no membership or basic membership had the highest churn rates — around 90% and 95% respectively. Customers on premium plans barely churned at all. I would recommend the business introduce upgrade incentives to move low-tier customers into higher membership categories, as this would give them more reasons to stay.
+My analysis showed that customers with no membership or basic membership had the highest churn rates was around 90% and 95% respectively. Customers on premium plans barely churned at all. I would recommend the business introduce upgrade incentives to move low-tier customers into higher membership categories, as this would give them more reasons to stay.
 
 **3. Act on Negative Feedback Early**
 
