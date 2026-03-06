@@ -102,5 +102,15 @@ Customer feedback was one of the top predictors of churn in my model. Customers 
 ## Author
 
 **Pius**
-BSc Production Engineering, University of Benin
-Aspiring Data Scientist | [LinkedIn](#) | [GitHub](#)
+Data Scientist
+
+[
+
+![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)
+
+](https://www.linkedin.com/in/victor-pius-4061a9332)
+[
+
+![GitHub](https://img.shields.io/badge/GitHub-Follow-black)
+
+](https://github.com/profpius)
