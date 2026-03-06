@@ -101,7 +101,8 @@ Customer feedback was one of the top predictors of churn in my model. Customers 
 
 ## Author
 
-**Pius**
+**Victor Pius**
+
 Data Scientist
 
 [
