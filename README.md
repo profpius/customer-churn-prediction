@@ -1,12 +1,12 @@
 # Customer Churn Prediction
 
-A machine learning project to predict customer churn using a dataset of 36,992 customer records. The goal was to identify customers who are likely to leave and uncover the key factors driving churn — so the business can take action before losing them.
+A machine learning project to predict customer churn using a dataset of 36,992 customer records. The goal was to identify customers who are likely to leave and uncover the key factors driving churn, so the business can take action before losing them.
 
 ---
 
 ## Problem Statement
 
-Customer churn is one of the most costly problems a business can face. Retaining an existing customer is far cheaper than acquiring a new one. This project builds a machine learning model that predicts which customers are at risk of churning, and provides actionable recommendations the business can use to improve retention.
+Customer churn is one of the most costly problems a business can face. Retaining an existing customer is far cheaper than acquiring a new one. This project builds a machine learning model that predicts which customers are at risk of leaving, and provides actionable recommendations the business can use to improve retention.
 
 ---
 
