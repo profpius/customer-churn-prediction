@@ -69,12 +69,15 @@ The tuned model achieved an F1 of 93.94%, marginally below the default model's 9
 ## Business Recommendations
 
 **1. Re-engage Customers with Low Wallet Points**
+
 I found that customers with lower wallet points were more likely to churn. This tells me these customers are not actively engaging with the loyalty programme. The business can address this by sending personalised offers or bonus point campaigns to customers whose points drop below a certain level.
 
 **2. Focus on No Membership and Basic Membership Customers**
+
 My analysis showed that customers with no membership or basic membership had the highest churn rates — around 90% and 95% respectively. Customers on premium plans barely churned at all. I would recommend the business introduce upgrade incentives to move low-tier customers into higher membership categories, as this would give them more reasons to stay.
 
 **3. Act on Negative Feedback Early**
+
 Customer feedback was one of the top predictors of churn in my model. Customers who expressed dissatisfaction were significantly more likely to leave. A simple fix would be for the customer service team to follow up with unhappy customers immediately before they make the decision to leave.
 
 ---
