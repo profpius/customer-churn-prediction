@@ -10,7 +10,7 @@ Customer churn is one of the most costly problems a business can face. Retaining
 
 ---
 
-## Dataset
+## 🗂️ Dataset
 
 - **Records:** 36,992 customers
 - **Features:** 23 columns including demographics, membership details, transaction behaviour, and feedback
@@ -19,7 +19,7 @@ Customer churn is one of the most costly problems a business can face. Retaining
 
 ---
 
-## Project Workflow
+## ⚙️ Project Workflow
 
 ### 1. Data Preprocessing
 - Dropped non-predictive columns — `security_no` and `referral_id` are unique identifiers with no predictive value; `joining_date` and `last_visit_time` are raw datetime strings that require feature engineering before they are useful
@@ -55,7 +55,7 @@ The tuned model achieved an F1 of 93.94%, marginally below the default model's 9
 
 ---
 
-## Key Findings
+## 🔑 Key Findings
 
 ### Top Churn Predictors
 1. **points_in_wallet** — The strongest predictor by far. Customers who churned had an average of 630 wallet points compared to 740 for those who stayed. Low engagement with the loyalty programme is a strong early warning signal.
@@ -66,7 +66,7 @@ The tuned model achieved an F1 of 93.94%, marginally below the default model's 9
 
 ---
 
-## Business Recommendations
+## 💡 Business Recommendations
 
 **1. Re-engage Customers with Low Wallet Points**
 
@@ -82,7 +82,7 @@ Customer feedback was one of the top predictors of churn in my model. Customers 
 
 ---
 
-## Tools & Libraries
+## 🛠️ Tools & Libraries
 
 - **Python**
 - **Pandas & NumPy** — data manipulation
@@ -93,7 +93,8 @@ Customer feedback was one of the top predictors of churn in my model. Customers 
 
 ---
 
-## Future Improvements
+## 🚀 Future Improvements
+
 
 - Extract useful features from `joining_date` (customer tenure) and `last_visit_time` (hour of activity) instead of dropping them
 - Tune the decision threshold beyond the default 0.5 depending on business tolerance for false alarms
@@ -102,7 +103,7 @@ Customer feedback was one of the top predictors of churn in my model. Customers 
 
 ---
 
-## Author
+## 🧑‍💻 Author
 
 **Victor Pius**
 
