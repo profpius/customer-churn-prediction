@@ -102,7 +102,12 @@ Customer feedback was one of the top predictors of churn in my model. Customers 
 - Run RandomizedSearchCV with more iterations to explore a wider range of parameter combinations
 
 ---
+## Dataset
+This project uses the Customer Churn dataset sourced from Kaggle.
 
+To run the notebook, download the CSV file from [here](https://www.kaggle.com/code/undersc0re/customer-churn/input) and place it in the same folder as the notebook.
+
+---
 ## 🧑‍💻 Author
 
 **Victor Pius**
