@@ -107,9 +107,8 @@ Customer feedback was one of the top predictors of churn in my model. Customers 
 
 **Victor Pius**
 
-Data Scientist
+Data Scientist & Data Analyst 
 
-[
 
 ![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)(https://www.linkedin.com/in/victor-pius-4061a9332)
 
