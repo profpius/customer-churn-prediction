@@ -111,11 +111,7 @@ Data Scientist
 
 [
 
-![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)
+![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)(https://www.linkedin.com/in/victor-pius-4061a9332)
 
-](https://www.linkedin.com/in/victor-pius-4061a9332)
-[
-
-![GitHub](https://img.shields.io/badge/GitHub-Follow-black)
-
-](https://github.com/profpius)
+![Github](https://img.shields.io/badge/GitHub-Follow-green)
+(https://github.com/profpius)
