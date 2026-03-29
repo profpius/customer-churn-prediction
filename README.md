@@ -1,22 +1,25 @@
 # 🔁 Customer Churn Prediction
-### End-to-End Binary Classification · Logistic Regression · Random Forest · XGBoost · SHAP Explainability
+### End-to-End Binary Classification · Logistic Regression · Random Forest · XGBoost · SHAP Explainability · Streamlit Deployment
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profpius/customer-churn-prediction/blob/main/churn_prediction.ipynb)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://profpius-customer-churn-prediction.streamlit.app)
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4-orange?logo=scikit-learn&logoColor=white)
-![XGBoost](https://img.shields.io/badge/XGBoost-2.0-red)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.8.0-orange?logo=scikit-learn&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-3.2.0-red)
 ![SHAP](https://img.shields.io/badge/SHAP-Explainability-blueviolet)
+![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-ff4b4b?logo=streamlit&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
 ## 🚀 Key Results
 
-- Built an end-to-end churn prediction system trained on **37,000 customer records**
-- Achieved **94.02% F1 Score** and **97.60% ROC-AUC** using a tuned XGBoost pipeline
+- Built an end-to-end churn prediction system trained on **36,992 customer records**
+- Achieved **94.01% F1 Score** and **97.60% ROC-AUC** using a tuned XGBoost pipeline
 - Validated performance with **Stratified 5-Fold Cross-Validation**, confirming stability across all data splits
 - Identified the top churn drivers using **SHAP explainability**, providing directional business insight beyond standard importance scores
 - Delivered a **production-ready, serialised sklearn Pipeline** capable of scoring new customers in real time with a single function call
+- Deployed as a **live interactive web app** on Streamlit Community Cloud with single-record and batch prediction capabilities
 - Translated model outputs into actionable retention strategies with an estimated recovery potential of **₦150,000,000+ monthly revenue**
 
 ---
@@ -29,6 +32,9 @@
 - Cross-Validation and Robust Performance Evaluation
 - Model Explainability with SHAP (TreeExplainer)
 - Production Pipeline Serialisation with `joblib`
+- Streamlit App Development and UI Design
+- Cloud Deployment on Streamlit Community Cloud
+- Dependency management and environment reproducibility across cloud platforms
 - Business Insight Generation from Model Outputs
 
 ---
@@ -41,7 +47,8 @@ This project addresses that gap by building a **production-ready machine learnin
 
 - Identifies customers at high risk of churning **before** they leave
 - Quantifies the exact business levers driving churn (loyalty points, membership tier, complaint history)
-- Delivers a **serialised, deployment-ready pipeline** that scores new customers in real time with a single API call
+- Delivers a **serialised, deployment-ready pipeline** that scores new customers in real time
+- Surfaces predictions and SHAP explanations through a **live, interactive web application** accessible to non-technical stakeholders
 
 The model enables retention teams to take **targeted, cost-efficient action** instead of blanketing the entire customer base with expensive campaigns.
 
@@ -52,13 +59,40 @@ The model enables retention teams to take **targeted, cost-efficient action** in
 | Attribute | Detail |
 |---|---|
 | **Task** | Binary Classification (Churn = 1 / No Churn = 0) |
-| **Dataset** | ~37,000 customer records, 24 raw features |
+| **Dataset** | 36,992 customer records, 18 training features |
 | **Best Model** | XGBoost |
-| **F1 Score** | **94.02%** (Tuned XGBoost) |
+| **F1 Score** | **94.01%** (Tuned XGBoost) |
+| **Accuracy** | **93.47%** |
 | **ROC-AUC** | **97.60%** |
 | **Explainability** | SHAP (TreeExplainer) |
-| **Deployment** | `joblib` serialised sklearn Pipeline |
+| **Deployment** | Streamlit Community Cloud (live) |
+| **Serialisation** | `joblib` sklearn Pipeline |
 | **Validation** | Stratified 5-Fold Cross-Validation |
+
+---
+
+## 🌐 Live App
+
+The model is deployed as a fully interactive web application on **Streamlit Community Cloud**.
+
+**→ [Launch the App](https://profpius-customer-churn-prediction.streamlit.app)**
+
+### App Features
+
+**Tab 1 — Single Prediction**
+- 18 input fields organised into 5 sidebar sections: Demographics, Membership, Engagement, Financial, and Complaints & Feedback
+- Color-coded risk result card (🔴 High / 🟡 Medium / 🟢 Low) with churn probability percentage
+- Visual probability gauge (progress bar)
+- SHAP feature importance panel explaining the individual prediction
+- Actionable business recommendations based on the risk level
+- Summary of the submitted customer profile
+
+**Tab 2 — Batch CSV Prediction**
+- Upload any CSV matching the expected feature schema
+- Runs predictions on all rows in a single pass
+- Summary metrics strip: total customers, predicted churned, predicted stayed, average churn probability
+- Full results table with `Churn Probability`, `Prediction`, and `Risk Level` columns appended
+- One-click download of results as CSV
 
 ---
 
@@ -88,14 +122,14 @@ Model Evaluation (Holdout Set + 5-Fold Cross-Validation)
    |
 SHAP Explainability (TreeExplainer)
    |
-Serialised Pipeline  →  saved locally (not tracked in repo)
+Serialised Pipeline  →  churn_model_pipeline.pkl  →  Streamlit App
 ```
 
 ---
 
 ## 📂 Dataset Description
 
-The dataset contains **~37,000 anonymised customer records** with behavioural, transactional, and membership attributes collected from a retail/subscription platform.
+The dataset contains **36,992 anonymised customer records** with behavioural, transactional, and membership attributes collected from a retail/subscription platform.
 
 | Feature | Type | Description |
 |---|---|---|
@@ -181,28 +215,26 @@ Three models were trained and compared, each wrapped in a full preprocessing + c
 
 ### 2. Random Forest *(Ensemble Baseline)*
 - 100 estimators, `class_weight='balanced'`
-- Captures non-linear interactions without feature scaling dependency
-- Used for feature importance triangulation against XGBoost
+- Captures non-linear feature interactions without gradient boosting
 
 ### 3. XGBoost *(Selected Best Model)*
-- Gradient-boosted trees with `logloss` evaluation metric
-- Hyperparameters tuned via `RandomizedSearchCV` (20 iterations, 3-Fold Stratified CV)
-- Optimised directly on F1 score, the metric that balances false negatives (missed churners) against false positives (wasted retention spend)
-- Tuned model (F1: **94.02%**) marginally outperformed the baseline (F1: 94.01%) and was selected as the final deployed pipeline
+- Tuned via `RandomizedSearchCV` with Stratified 3-Fold CV
+- Key tuned parameters: `n_estimators`, `max_depth`, `learning_rate`, `subsample`, `colsample_bytree`
+- `scale_pos_weight` set to handle class imbalance natively
 
 ---
 
-## 📈 Model Evaluation Metrics
+## 📈 Model Performance
 
-### Holdout Test Set Performance (80/20 Stratified Split)
+### Hold-Out Test Set Results
 
-| Model | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
-|---|---|---|---|---|---|
-| Logistic Regression | 77.56% | 79.06% | 79.62% | 79.34% | 83.29% |
-| Random Forest | 93.16% | 92.91% | 94.58% | 93.74% | 97.55% |
-| **XGBoost** | **93.47%** | **93.29%** | **94.75%** | **94.01%** | **97.60%** |
+| Model | F1 Score | ROC-AUC | Accuracy |
+|---|---|---|---|
+| Logistic Regression | 78.90% | 82.60% | 79.20% |
+| Random Forest | 93.80% | 97.50% | 93.30% |
+| **XGBoost** | **94.01%** | **97.60%** | **93.47%** |
 
-### Stratified 5-Fold Cross-Validation (Mean ± Std)
+### Stratified 5-Fold Cross-Validation
 
 Cross-validation confirmed that XGBoost's performance is **stable and generalisable**, not an artefact of a favourable random seed.
 
@@ -239,9 +271,9 @@ SHAP (SHapley Additive exPlanations) was used to provide directional, per-predic
 
 **3. 🛠️ Prioritise complaint resolution.** Customers with unresolved complaints and negative feedback are at immediate churn risk. A dedicated fast-track resolution queue for flagged customers would have high ROI.
 
-**4. ⚡ Automate real-time churn scoring.** The serialised pipeline can score a new customer record in milliseconds. Integrating this into the CRM or data warehouse enables daily automated risk scoring and proactive outreach.
+**4. ⚡ Automate real-time churn scoring.** The serialised pipeline powers the live Streamlit app and can also be integrated into any CRM or data warehouse for daily automated risk scoring and proactive outreach.
 
-**Estimated Business Value:** If the model flags 1,000 at-risk customers monthly and a targeted retention campaign recovers 30% of them at an average LTV of ₦500,000 per customer, the recovered revenue is ₦150,000,000/month, from a model trained on existing data.
+**Estimated Business Value:** If the model flags 1,000 at-risk customers monthly and a targeted retention campaign recovers 30% of them at an average LTV of ₦500,000 per customer, the recovered revenue is ₦150,000,000/month — from a model trained entirely on existing data.
 
 ---
 
@@ -251,13 +283,15 @@ SHAP (SHapley Additive exPlanations) was used to provide directional, per-predic
 |---|---|
 | **Language** | Python 3.10+ |
 | **Data Manipulation** | `pandas`, `numpy` |
-| **Machine Learning** | `scikit-learn`, `xgboost` |
+| **Machine Learning** | `scikit-learn 1.8.0`, `xgboost 3.2.0` |
 | **Explainability** | `shap` |
 | **Visualisation** | `matplotlib`, `seaborn` |
 | **Model Serialisation** | `joblib` |
 | **Hyperparameter Tuning** | `RandomizedSearchCV` |
 | **Validation** | `StratifiedKFold` |
-| **Development Environment** | Jupyter Notebook / Google Colab |
+| **App Framework** | `streamlit` |
+| **Development Environment** | Google Colab |
+| **Deployment** | Streamlit Community Cloud |
 | **Version Control** | Git / GitHub |
 
 ---
@@ -268,34 +302,48 @@ SHAP (SHapley Additive exPlanations) was used to provide directional, per-predic
 customer-churn-prediction/
 │
 ├── churn_prediction.ipynb        # Main notebook: full end-to-end pipeline
-├── churn.csv                     # Raw dataset (37k customer records)
-├── requirements.txt              # Python dependencies
+├── churn.csv                     # Raw dataset (36,992 customer records)
+├── churn_model_pipeline.pkl      # Serialised sklearn Pipeline (model + preprocessor)
+├── app.py                        # Streamlit web application
+├── requirements.txt              # Python dependencies for deployment
 ├── README.md                     # Project documentation
+├── LICENSE                       # MIT License
+├── .gitignore
 │
-├── visuals/                      # Exported chart images
-│   ├── target_distribution.png
-│   ├── model_comparison.png
-│   ├── roc_curves.png
-│   ├── confusion_matrices.png
-│   ├── feature_importance_rf.png
-│   ├── feature_importance_xgb.png
-│   ├── shap_summary_beeswarm.png
-│   ├── shap_summary_bar.png
-│   └── shap_dependence_wallet.png
+└── visuals/                      # Exported chart images
+    ├── target_distribution.png
+    ├── model_comparison.png
+    ├── roc_curves.png
+    ├── confusion_matrices.png
+    ├── feature_importance_rf.png
+    ├── feature_importance_xgb.png
+    ├── shap_summary_beeswarm.png
+    ├── shap_summary_bar.png
+    └── shap_dependence_wallet.png
 ```
 
 ---
 
 ## ▶️ How to Run the Project
 
-### 1. Clone the Repository
+### Option 1 — Use the Live App (No Setup Required)
+
+👉 **[Open the Streamlit App](https://profpius-customer-churn-prediction.streamlit.app)**
+
+Enter customer details in the sidebar and get an instant churn prediction with SHAP explanation, or upload a CSV for batch scoring.
+
+---
+
+### Option 2 — Run Locally
+
+#### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/profpius/customer-churn-prediction.git
 cd customer-churn-prediction
 ```
 
-### 2. Install Dependencies
+#### 2. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -311,10 +359,16 @@ shap>=0.44
 matplotlib>=3.7
 seaborn>=0.12
 joblib>=1.3
-jupyter>=1.0
+streamlit>=1.35.0
 ```
 
-### 3. Launch the Notebook
+#### 3. Launch the Streamlit App
+
+```bash
+streamlit run app.py
+```
+
+#### 4. Or Run the Notebook
 
 ```bash
 jupyter notebook churn_prediction.ipynb
@@ -322,9 +376,11 @@ jupyter notebook churn_prediction.ipynb
 
 Or open directly in Google Colab using the badge at the top of this README.
 
-### 4. Run Inference on a New Customer
+---
 
-> **Note:** Run the notebook first to generate `churn_model_pipeline.pkl` locally, then use the snippet below.
+### Option 3 — Run Inference Directly in Python
+
+> **Note:** The `.pkl` file in the repo is pre-trained. Run the notebook only if you want to retrain. To use the existing model:
 
 ```python
 import joblib
@@ -333,20 +389,20 @@ import pandas as pd
 pipeline = joblib.load('churn_model_pipeline.pkl')
 
 new_customer = pd.DataFrame([{
-    'region_category'            : 'City',
-    'membership_category'        : 'Basic Membership',
-    'joining_month'              : 3,
-    'channel_code'               : 'Web',
-    'avg_frequency_login_days'   : 30,
-    'points_in_wallet'           : 150.0,
-    'used_special_discount'      : 'No',
+    'region_category'             : 'City',
+    'membership_category'         : 'Basic Membership',
+    'joining_month'               : 3,
+    'channel_code'                : 'Web',
+    'avg_frequency_login_days'    : 30,
+    'points_in_wallet'            : 150.0,
+    'used_special_discount'       : 'No',
     'offer_application_preference': 'No',
-    'past_complaint'             : 'Yes',
-    'complaint_status'           : 'Unsolved',
-    'feedback'                   : 'Poor Customer Support',
-    'avg_transaction_value'      : 20000,
-    'avg_time_spent'             : 8.0,
-    'no_of_days_visited'         : 5,
+    'past_complaint'              : 'Yes',
+    'complaint_status'            : 'Unsolved',
+    'feedback'                    : 'Poor Customer Support',
+    'avg_transaction_value'       : 20000,
+    'avg_time_spent'              : 8.0,
+    'no_of_days_visited'          : 5,
 }])
 
 pred  = pipeline.predict(new_customer)[0]
@@ -358,14 +414,25 @@ print(f"Churn Probability: {prob * 100:.1f}%")
 
 ---
 
+## ⚠️ Deployment Notes
+
+Deploying a serialised sklearn pipeline across environments requires careful version matching. Key lessons from this project:
+
+- **sklearn/XGBoost version mismatch** is the most common cause of `AttributeError` when loading `.pkl` files. The serialised model must be trained with the **exact same library versions** that will be used at inference time.
+- **Streamlit Community Cloud** does not honour `runtime.txt` for Python version pinning — the platform controls the Python version independently.
+- **Resolution workflow:** Check the Streamlit Cloud build logs to find the exact versions it installed → reinstall those exact versions in your training environment (Colab) → retrain → resave the `.pkl` → redeploy. This guarantees environment parity.
+- **Current production versions:** `scikit-learn==1.8.0`, `xgboost==3.2.0`
+
+---
+
 ## 🔭 Future Improvements
 
-- **Threshold Optimisation:**  Apply a custom decision threshold (e.g., 0.35 instead of 0.50) calibrated to the business cost ratio of false negatives vs. false positives
-- **Feature Engineering:**  Engineer time-based features from `joining_date` and `last_visit_time` (e.g., recency, days since last visit) which were dropped in this iteration
-- **Calibrated Probabilities:**  Apply Platt Scaling or Isotonic Regression to ensure predicted probabilities are well-calibrated for reliable risk scoring
-- **REST API Deployment:**  Wrap the serialised pipeline in a FastAPI service for real-time scoring via HTTP requests
-- **Dashboard Integration:**  Build a Streamlit or Power BI dashboard surfacing high-risk customer lists for the retention team
-- **Drift Monitoring:**  Implement data drift detection using Evidently AI to alert when the incoming customer distribution shifts from the training distribution
+- **Threshold Optimisation:** Apply a custom decision threshold (e.g., 0.35 instead of 0.50) calibrated to the business cost ratio of false negatives vs. false positives
+- **Feature Engineering:** Engineer time-based features from `joining_date` and `last_visit_time` (e.g., recency, days since last visit) which were dropped in this iteration
+- **Calibrated Probabilities:** Apply Platt Scaling or Isotonic Regression to ensure predicted probabilities are well-calibrated for reliable risk scoring
+- **REST API Deployment:** Wrap the serialised pipeline in a FastAPI service for real-time scoring via HTTP requests
+- **CRM Integration:** Connect the pipeline to a CRM or data warehouse for automated daily churn scoring
+- **Drift Monitoring:** Implement data drift detection using Evidently AI to alert when the incoming customer distribution shifts from the training distribution
 
 ---
 
@@ -374,7 +441,7 @@ print(f"Churn Probability: {prob * 100:.1f}%")
 **Victor Pius**
 Data Scientist & Data Analyst
 
-I build end-to-end machine learning solutions with a focus on **production readiness**, **business interpretability**, and **robust evaluation**. This project demonstrates proficiency across the full data science lifecycle: from raw data ingestion and leak-proof preprocessing, through model selection and rigorous cross-validation, to SHAP-based explainability and deployment-ready serialisation.
+I build end-to-end machine learning solutions with a focus on **production readiness**, **business interpretability**, and **robust evaluation**. This project demonstrates proficiency across the full data science lifecycle: from raw data ingestion and leak-proof preprocessing, through model selection and rigorous cross-validation, to SHAP-based explainability, Streamlit app development, and cloud deployment.
 
 📧 Connect on [LinkedIn](https://www.linkedin.com/in/victor-pius-4061a9332) · 💻 View all projects on [GitHub](https://github.com/profpius)
 
