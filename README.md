@@ -2,7 +2,7 @@
 ### End-to-End Binary Classification · Logistic Regression · Random Forest · XGBoost · SHAP Explainability · Streamlit Deployment
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/profpius/customer-churn-prediction/blob/main/churn_prediction.ipynb)
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://profpius-customer-churn-prediction.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://customer-churn-prediction-pius.streamlit.app)
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-1.8.0-orange?logo=scikit-learn&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-3.2.0-red)
@@ -75,7 +75,7 @@ The model enables retention teams to take **targeted, cost-efficient action** in
 
 The model is deployed as a fully interactive web application on **Streamlit Community Cloud**.
 
-**→ [Launch the App](https://profpius-customer-churn-prediction.streamlit.app)**
+**→ [Launch the App](https://customer-churn-prediction-pius.streamlit.app)**
 
 ### App Features
 
@@ -328,7 +328,7 @@ customer-churn-prediction/
 
 ### Option 1 — Use the Live App (No Setup Required)
 
-👉 **[Open the Streamlit App](https://profpius-customer-churn-prediction.streamlit.app)**
+👉 **[Open the Streamlit App](https://customer-churn-prediction-pius.streamlit.app)**
 
 Enter customer details in the sidebar and get an instant churn prediction with SHAP explanation, or upload a CSV for batch scoring.
 
